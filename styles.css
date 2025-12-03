@@ -1,0 +1,869 @@
+/* =========================================================
+   GLOBAL / RESET
+   (podstawowe ustawienia dla całej strony)
+========================================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #222;
+    background-color: #f3f5f4;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+a {
+    color: #2f5f3a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   NAGŁÓWEK (HEADER)
+   - logo po lewej
+   - link "Kontakt" po lewej obok logo
+   - menu po prawej
+========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(90deg, #2f5f3a, #3f7f4a);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+}
+
+/* LEWA CZĘŚĆ: logo + nazwa + "Kontakt" */
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo-text {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.15;
+}
+
+
+/* Domyślnie wszystkie obrazki skalują się do szerokości kontenera */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Tylko logo ma mieć wysokość ~40px */
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+
+/* Sekcja z grafiką między blokami treści */
+.section-image {
+    margin: 20px 0;          /* taki sam odstęp jak .section */
+}
+
+/* Wewnątrz już działa .container, więc tylko dopieszczamy obrazek */
+.section-image-inner img {
+    border-radius: 18px;     /* spójne z kartami na stronie */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+}
+
+
+
+
+/* wyróżniony link "Kontakt" w nagłówku */
+
+.header-contact-link {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.header-contact-link:hover {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.45);
+}
+
+/* PRAWA CZĘŚĆ: hamburger + menu */
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================================================
+   MENU GŁÓWNE (NAV)
+   - hamburger na mobile
+   - poziome menu na desktop
+========================================================= */
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    position: relative;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle-label span::before {
+    position: absolute;
+    top: -6px;
+}
+
+.nav-toggle-label span::after {
+    position: absolute;
+    top: 6px;
+}
+
+/* ikona X po otwarciu menu */
+
+.nav-toggle:checked + .nav-toggle-label span {
+    transform: rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span::before {
+    transform: rotate(-90deg);
+    top: 0;
+}
+
+.nav-toggle:checked + .nav-toggle-label span::after {
+    opacity: 0;
+}
+
+/* menu mobilne (rozwijane) */
+
+.main-nav {
+    display: none;
+    width: 100%;
+    background: #264830;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 8px 16px 12px;
+}
+
+.main-nav li {
+    margin-bottom: 4px;
+}
+
+.main-nav a {
+    display: block;
+    padding: 8px 0;
+    text-decoration: none;
+    color: #f4f7f3;
+    font-size: 15px;
+    line-height: 1.2;  /* mały odstęp dla 2-liniowych etykiet */
+    text-align: left;
+}
+
+/* pokazanie menu po kliknięciu hamburgera */
+
+.nav-toggle:checked + .nav-toggle-label + .main-nav {
+    display: block;
+}
+
+
+/* =========================================================
+   SEKCJE / BLOKI OGÓLNE
+========================================================= */
+
+.section {
+    margin: 32px 0; /* było 16px – delikatnie większy oddech */
+    scroll-margin-top: 90px;
+}
+
+.section-divider {
+    margin-bottom: 28px; /* było 18px */
+    margin-top: 6px;     /* niewielki odstęp ponad tytułem */
+}
+
+
+.section-inner {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.section-note {
+    margin-top: 26px;   /* oddech ponad notką */
+    margin-bottom: 12px;
+}
+
+
+
+h1, h2, h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #2f5f3a;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 17px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.bullet-list {
+    padding-left: 18px;
+    margin: 8px 0;
+}
+
+.bullet-list li {
+    margin-bottom: 4px;
+}
+
+
+#prady-selektywne p {
+    margin-bottom: 18px; /* większy oddech tekstów */
+}
+
+#prady-selektywne .info-grid {
+    margin-top: 24px;    /* przed gridem */
+    margin-bottom: 28px; /* po gridzie */
+}
+
+
+
+
+/* =========================================================
+   SEKCJA HERO (HOME)
+   - główny nagłówek
+   - wyróżnione boxy
+========================================================= */
+
+.hero {
+    margin-top: 18px;
+}
+
+.hero-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero-main,
+.hero-aside {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.top-phone {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.hero-subtitle {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.hero-aside .hero-actions {
+    margin-top: 16px;
+    justify-content: flex-start;  /* przyciski obok siebie, od lewej */
+}
+
+.btn-primary,
+.btn-ghost {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #3f7f4a;
+    color: #fff;
+    border-color: #3f7f4a;
+}
+
+.btn-primary:hover {
+    background: #356b3f;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #3f7f4a;
+    border-color: rgba(255,255,255,0.6);
+}
+
+.btn-ghost:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* box w prawej części hero */
+
+.hero-box {
+    background: #f5faf6;
+    border-radius: 12px;
+    padding: 14px;
+    border: 1px solid #d6e5d8;
+}
+
+.hero-box-note {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+}
+
+
+/* =========================================================
+   BLOKI INFORMACYJNE / OFERTA / KARTY / KROKI
+========================================================= */
+
+/* siatki (gridy) */
+
+.info-grid,
+.cards-grid,
+.steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.info-card,
+.service-card,
+.step-card {
+    background: #f9fbf9;
+    border-radius: 10px;
+    border: 1px solid #e1ebe3;
+    padding: 14px 16px;
+}
+
+/* kroki (Umów wizytę) */
+
+.step-card {
+    position: relative;
+    padding-left: 46px;
+}
+
+.step-number {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: #3f7f4a;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* link z karty (np. "Więcej o...") */
+
+.card-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+/* sekcje typu "Drodzy Pacjenci" */
+
+.notice .section-inner {
+    border-left: 4px solid #3f7f4a;
+}
+
+/* link do wideo */
+
+/* =========================================
+   Sekcje ze zdjęciami między blokami
+========================================= */
+
+/* ===== SEKCJA Z OBRAZEM MIĘDZY SEKCJAMI ===== */
+
+/* =========================================================
+   SEKCJA Z OBRAZEM MIĘDZY BLOKAMI (ZDROWA DIETA)
+   ========================================================= */
+
+.section-image {
+    /* standardowe marginesy sekcji – możesz zostawić jak w .section */
+    padding-top: 0;        /* opcjonalnie trochę ciaśniej od góry */
+    padding-bottom: 0;
+}
+
+/* modyfikujemy istniejący box section-inner TYLKO w tej sekcji */
+.section-image-inner {
+    padding: 0;                 /* bez wewnętrznego marginesu, sam obraz */
+    background: transparent;    /* bez białego tła – tłem jest sam obraz */
+    box-shadow: none;           /* bez cienia, żeby nie wyglądał jak karta */
+}
+
+/* samo zdjęcie – dokładnie szerokość kontenera = szerokość innych sekcji */
+.section-image-inner img {
+    display: block;
+    width: 100%;          /* pełna szerokość .container section-inner */
+    height: auto;
+    border-radius: 12px;  /* możesz dać tyle, ile mają karty / boksy */
+}
+
+
+/* CTA (np. w "Umów wizytę") */
+
+.cta-box {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: #2f5f3a;
+    color: #f5faf6;
+}
+
+.cta-box h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.cta-box a {
+    color: #fffbcc;
+}
+
+
+/* =========================================================
+   NAGŁÓWKI SEKCJI Z DELIKATNYMI LINIAMI
+   - używane w Arkadia, Zakres usług, Prądy, Dieta, Umów wizytę
+========================================================= */
+
+.section-divider {
+    position: relative;
+    margin: 0 0 18px 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2f5f3a;
+}
+
+.section-divider span {
+    position: relative;
+    display: inline-block;
+    padding: 0 12px;
+    background: #ffffff; /* to samo co tło boxa section-inner */
+    z-index: 1;
+}
+
+/* cienkie linie po lewej i prawej stronie tytułu */
+
+.section-divider::before,
+.section-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.12);
+    transform: translateY(-50%);
+}
+
+.section-divider::before {
+    right: 50%;
+    margin-right: 60px;
+}
+
+.section-divider::after {
+    left: 50%;
+    margin-left: 60px;
+}
+
+/* Na bardzo małych ekranach linie krótsze, mniej inwazyjne */
+
+@media (max-width: 480px) {
+    .section-divider::before,
+    .section-divider::after {
+        width: 24px;
+        margin-right: 40px;
+        margin-left: 40px;
+    }
+}
+
+/* Na większych ekranach linie delikatnie dłuższe (bardziej "sekcyjne") */
+
+@media (min-width: 768px) {
+    .section-divider {
+        font-size: 22px;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+        width: 70px;
+        margin-right: 80px;
+        margin-left: 80px;
+    }
+}
+
+
+/* =========================================================
+   STOPKA (FOOTER)
+   - 3 kolumny
+   - adres pod kolumnami
+   - prawa autorskie na dole
+   - tylko 3 SVG: tel, e-mail, mapa
+========================================================= */
+
+.site-footer {
+    background: #1b2a1f;
+    color: #e8f0ea;
+    margin-top: 32px;
+    padding: 26px 0 20px; /* większy, ale bezpieczny oddech */
+    font-size: 14px;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* pojedyncza kolumna */
+
+.footer-col {
+    font-size: 14px;
+}
+
+.footer-heading {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.footer-text {
+    margin: 4px 0 6px;
+    line-height: 1.6;
+}
+
+/* linia z ikoną + tekst (tel, mail, jak dojechać) */
+
+.footer-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+}
+
+.footer-col a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-col a:hover {
+    text-decoration: underline;
+}
+
+/* proste "liniowe" ikonki SVG */
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(255,255,255,0.9);  /* jasny kolor linii */
+    fill: none;
+    stroke-width: 1.6;
+}
+
+/* wypełnione fragmenty (np. pinezka) lekko przygaszone, ale jasne */
+
+.icon svg path:first-child {
+    fill: rgba(255,255,255,0.12);
+}
+
+/* wspólny adres pod trzema kolumnami */
+
+.footer-address {
+    margin-top: 12px;
+    padding: 14px 0 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #dfe7e1;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+/* dół stopki: prawa autorskie + link do góry */
+
+.footer-bottom {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: #d8e4d8;
+}
+
+.footer-nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   AKCENTOWANE NAGŁÓWKI W INFO-CARD
+========================================================= */
+
+.info-card h3 {
+    position: relative;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+    color: #2f5f3a; /* Twój główny zielony */
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* Pasek pod nagłówkiem */
+.info-card h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 42px;
+    height: 3px;
+    background-color: #3f7f4a;
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   WERSJA DESKTOPOWA (≥ 768px)
+   - menu poziome
+   - grids 2–3 kolumnowe
+   - równe kolumny stopki
+========================================================= */
+
+@media (min-width: 768px) {
+
+    /* nagłówek */
+
+    .header-inner {
+        padding: 10px 0;
+    }
+
+    .header-left {
+        gap: 22px;
+    }
+
+    .header-contact-link {
+        padding: 7px 14px;
+        font-size: 15px;
+    }
+
+    /* menu główne */
+
+    .nav-toggle-label {
+        display: none;
+    }
+
+    .main-nav {
+        display: block !important;
+        width: auto;
+        background: transparent;
+    }
+
+    .main-nav ul {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0;
+    }
+
+    .main-nav li {
+        margin-bottom: 0;
+    }
+
+    .main-nav a {
+        padding: 6px 0;
+        font-size: 15px;
+        position: relative;
+        color: #f7faf7;
+        text-align: center;
+    }
+
+    .main-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background: #ffeb99;
+        transition: width 0.2s ease;
+    }
+
+    .main-nav a:hover::after {
+        width: 100%;
+    }
+
+    /* hero / sekcje */
+
+    .section-inner {
+        padding: 24px 28px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .hero-layout {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    /* gridy */
+
+    .info-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* stopka – 3 równe kolumny */
+
+    .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch; /* wyrównuje wysokość kolumn */
+    }
+
+    .footer-col {
+        flex: 1;
+        max-width: 32%;
+    }
+
+    .footer-address {
+        margin-top: 18px;
+        padding: 18px 0 10px;
+        font-size: 15px;
+    }
+
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 18px;
+        padding-top: 16px;
+    }
+
+    .site-footer {
+        padding: 36px 0 28px;
+    }
+}
